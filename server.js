@@ -1,4 +1,7 @@
 const express = require('express')
+const { HomeGetController } = require('./controllers/HomeController')
+const { LoginGetController, LoginPostController } = require('./controllers/LoginController')
+const { SignUpGetController, SignUpPostController } = require('./controllers/SignUpController')
 const app = express()
 
 require('dotenv').config()
@@ -10,6 +13,7 @@ app.listen(PORT, () => {
 })
 
 app.use('/assets',express.static('public'))
+app.use('/bootstrap',express.static('node_modules/bootstrap/dist'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 // app.use(sampleMiddleware)
@@ -18,13 +22,16 @@ app.use(express.urlencoded({ extended: true }))
 
 app.set('view engine', 'ejs')
 
-app.get(['/'], HomeGetController )
-app.get(['/set'], SetGetController )
+app.get('/', HomeGetController)
+app.get('/login', LoginGetController)
+app.get('/signup', SignUpGetController)
 
-function HomeGetController (request, response){
-    response.render('index')
-}
+app.post('/login', LoginPostController)
+app.post('/signup', SignUpPostController)
 
-function SetGetController (request, response){
-    response.render('index')
-}
+// / => Asosiy sahifa
+// /login => Login sahifa
+// /signup => Ro'yxatdan o'tish
+
+// /login => login, password => Kiritadi
+// /signup => login, password => Ro'yxatdan o'tqazadi

@@ -10,7 +10,7 @@
 const bcrypt = require('bcrypt')
 const saltDegree = 10
 
-async function genereteCrypt (data){
+async function generateCrypt (data){
     let salt = await bcrypt.genSaltSync(saltDegree)
     let encrypt = await bcrypt.hashSync(data, salt)
     return encrypt
@@ -22,5 +22,5 @@ async function confirmHash(data, hash){
 }
 
 module.exports = {
-    confirmHash, genereteCrypt
+    confirmHash, generateCrypt
 }

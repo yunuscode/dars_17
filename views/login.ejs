@@ -1,0 +1,23 @@
+<%- include('header') %>
+
+<section class="vh-100 d-flex justify-content-center align-items-center">
+    <div class="container d-flex justify-content-center align-items-center flex-column">
+        <h1>Login Page</h1>
+        <% if(error) {%>
+        <div class="alert alert-danger"><%= error %></div>
+        <% } %> 
+        <form class="d-flex flex-column w-50" action="/login" method="POST">
+            <label>
+                <input class="form-control mt-2" type="text" name="login" placeholder="Login" required autocomplete="off">
+            </label>
+            <label>
+                <input class="form-control my-2" type="password" name="password" placeholder="Password" required autocomplete="off">
+            </label>
+            <button class="btn btn-success">Login</button>
+            <a class="btn btn-success mt-2" href="/signup">Sign up Page</a>
+        </form>
+    </div>
+</section>
+
+
+<%- include('footer') %>
